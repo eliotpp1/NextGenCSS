@@ -1,12 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".card");
-  const container = document.querySelector(".grid-container");
   let activeCard = null;
 
-  cards.forEach((card) => {
+  cards.forEach((card, index) => {
     card.addEventListener("click", (event) => {
-      // Empêcher la propagation pour éviter la fermeture immédiate
       event.stopPropagation();
+
+      // Si on reclique sur la carte déjà agrandie, on la réduit
+      if (activeCard === card) {
+        if (document.startViewTransition) {
+          document.startViewTransition(() => {
+            card.classList.remove("expanded");
+            activeCard = null;
+          });
+        } else {
+          card.classList.remove("expanded");
+          activeCard = null;
+        }
+        return;
+      }
 
       // Si un autre bouton est déjà agrandi, le réduire
       if (activeCard && activeCard !== card) {
@@ -16,12 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
       // Utiliser View Transition API si supportée
       if (document.startViewTransition) {
         document.startViewTransition(() => {
-          // Toggle de la classe expanded
           card.classList.toggle("expanded");
           activeCard = card.classList.contains("expanded") ? card : null;
         });
       } else {
-        // Fallback sans View Transition
         card.classList.toggle("expanded");
         activeCard = card.classList.contains("expanded") ? card : null;
       }
