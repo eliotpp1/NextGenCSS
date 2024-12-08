@@ -1,18 +1,404 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/style.css" />
-    <title>Transition playground</title>
+    <title>Démonstration Complète View Transitions API</title>
+    <style>
+      :root {
+        --bg-primary: #f0f4f8;
+        --text-primary: #2d3748;
+        --accent-color: #3182ce;
+        --card-bg: #ffffff;
+        --highlight-bg: #fff3cd;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        line-height: 1.6;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      h1 {
+        color: var(--accent-color);
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      h2 {
+        color: var(--accent-color);
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 0.5rem;
+      }
+
+      section {
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      pre {
+        background-color: #f1f5f9;
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 1rem 0;
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .browser-support {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .browser-support div {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .browser-support .supported::before,
+      .browser-support .unsupported::before {
+        content: "●";
+        font-size: 1.2rem;
+      }
+
+      .browser-support .supported::before {
+        color: green;
+      }
+
+      .browser-support .unsupported::before {
+        color: red;
+      }
+
+      .highlight-box {
+        background-color: #f4f4f8;
+        border-left: 4px solid #3182ce;
+        padding: 1rem;
+        margin: 1rem 0;
+      }
+
+      ul,
+      ol {
+        margin-left: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .screenshot-comparison {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 2rem 0;
+        gap: 1rem;
+      }
+
+      .screenshot {
+        flex: 1;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .screenshot img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    </style>
   </head>
   <body>
-    <div class="container">
-      <div class="card id1" data-column="1" data-row="1"><p>1</p></div>
-      <div class="card id2" data-column="2" data-row="1"><p>2</p></div>
-      <div class="card id3" data-column="1" data-row="2"><p>3</p></div>
-      <div class="card id4" data-column="2" data-row="2"><p>4</p></div>
-    </div>
+    <header>
+      <h1>View Transitions API</h1>
+      <p>
+        Découvrez la puissance des transitions natives du Web avec l'API View
+        Transitions, un moyen révolutionnaire de créer des animations fluides et
+        performantes.
+      </p>
+    </header>
+
+    <section>
+      <h2>Comparaison Simple vs View Transitions</h2>
+      <pre><code>
+// Exemple de base sans utiliser l'api view transition
+cards.forEach((card, index) => {
+  card.addEventListener("click", (event) => {
+    // Modification du DOM
+    card.classList.toggle("expanded");
+  });
+});
+
+// Exemple de base <span class="highlight">avec l'api view transition</span>
+cards.forEach((card, index) => {
+  card.addEventListener("click", (event) => {
+    <span class="highlight">document.startViewTransition(() => {
+      // Modification du DOM
+      card.classList.toggle("expanded");
+    });</span>
+  });
+});
+      </code></pre>
+      <div class="highlight-box">
+        <h3>La Différence Clé</h3>
+        <p>
+          La seule ligne <code>document.startViewTransition()</code> transforme
+          une transition brutale en une animation fluide et élégante. Le
+          navigateur gère toute la complexité de l'animation pour vous.
+        </p>
+      </div>
+    </section>
+
+    <section class="highlight-box">
+      <h2>Comment ça marche vraiment ?</h2>
+      <p>
+        Imaginez les View Transitions comme un photographe magique qui capture
+        instantanément deux photos de votre page web. Une photo avant le
+        changement, une photo après. Ensuite, ce photographe fait un tour de
+        passe-passe : il fait glisser doucement une photo sur l'autre, créant
+        une transition fluide et élégante.
+      </p>
+      <p>
+        Au lieu de sauter brutalement d'un état à un autre, votre interface web
+        fait une transition en douceur, comme si les éléments étaient vivants et
+        se déplaçaient naturellement. C'est un peu comme un fondu au cinéma,
+        mais pour les interfaces web.
+      </p>
+      <p>
+        Le truc génial ? Vous n'avez pas besoin d'être un expert en animations.
+        Le navigateur fait tout le travail difficile pour vous. Il suffit
+        d'utiliser <code>document.startViewTransition()</code>, et la magie
+        opère !
+      </p>
+    </section>
+
+    <section>
+      <h2>Support des Navigateurs</h2>
+      <div class="browser-support">
+        <div class="supported">Chrome</div>
+        <div class="supported">Edge</div>
+        <div class="unsupported">Firefox</div>
+        <div class="supported">Safari</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Principes Clés</h2>
+      <ul>
+        <li>Transition native du navigateur</li>
+        <li>Performance optimisée</li>
+        <li>Minimal overhead</li>
+        <li>Fallback automatique</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Démonstration Détaillée : Grille Interactive</h2>
+
+      <div class="highlight-box">
+        <h3>Structure CSS Grid Dynamique</h3>
+        <pre><code>
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  resize: both;  /* Permet de redimensionner le conteneur */
+  overflow: auto;
+}
+
+.card {
+  /* Utilisation des attributs data pour le placement */
+  grid-column: attr(data-column);
+  grid-row: attr(data-row);
+}
+        </code></pre>
+        <p>
+          La grille utilise une configuration 2x2 avec des cartes positionnées
+          dynamiquement via des attributs data. Le conteneur est
+          redimensionnable, démontrant la flexibilité du layout.
+        </p>
+      </div>
+
+      <div class="highlight-box">
+        <h3>View Transitions Personnalisées</h3>
+        <pre><code>
+.id1 { view-transition-name: card-transition1; }
+.id2 { view-transition-name: card-transition2; }
+
+::view-transition-new(card-transition1) {
+  animation: fade-in 0.2s;
+}
+::view-transition-old(card-transition1) {
+  animation: fade-out 0.2s;
+}
+        </code></pre>
+        <p>
+          Chaque carte possède un nom de transition unique, permettant des
+          animations individualisées. Les pseudo-éléments ::view-transition
+          définissent des animations de fondu personnalisées.
+        </p>
+      </div>
+
+      <div class="highlight-box">
+        <h3>Logique JavaScript d'Interaction</h3>
+        <pre><code>
+document.startViewTransition(() => {
+  // Modification du DOM
+  card.classList.toggle('expanded');
+});
+        </code></pre>
+        <p>
+          L'API View Transitions capte automatiquement les changements de DOM et
+          génère une transition fluide. La méthode `startViewTransition()` gère
+          toute la complexité de l'animation.
+        </p>
+      </div>
+
+      <div class="highlight-box">
+        <h3>Fonctionnalités Clés</h3>
+        <ul>
+          <li>Agrandissement dynamique des cartes</li>
+          <li>Fermeture en cliquant à l'extérieur</li>
+          <li>Gestion de l'état actif</li>
+          <li>Fallback pour navigateurs non-supportés</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Principes Techniques</h2>
+      <ul>
+        <li>
+          <strong>Nommage des Transitions :</strong>
+          Chaque carte a un identifiant unique de transition
+          (<code>view-transition-name</code>)
+        </li>
+        <li>
+          <strong>Animations Personnalisées :</strong>
+          Utilisation des pseudo-éléments <code>::view-transition-new</code> et
+          <code>::view-transition-old</code>
+        </li>
+        <li>
+          <strong>Gestion Cross-Browser :</strong>
+          Vérification de support via <code>document.startViewTransition</code>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Processus de Transition</h2>
+
+      <div class="screenshot-comparison">
+        <div class="screenshot">
+          <img
+            src="/api/placeholder/500/300?text=Avant+Transition"
+            alt="État initial"
+          />
+          <p>État Initial (::view-transition-old)</p>
+        </div>
+        <div class="screenshot">
+          <img
+            src="/api/placeholder/500/300?text=Après+Transition"
+            alt="État final"
+          />
+          <p>État Final (::view-transition-new)</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <h3>Mécanisme Technique de Transition</h3>
+        <pre><code>
+@keyframes screenshot-transition {
+  from {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      opacity: 1;
+  }
+  to {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+      opacity: 0;
+  }
+}
+
+id1 {
+  view-transition-name: card-transition1;
+}
+
+::view-transition-old(card-transition1) {
+  animation: 
+      screenshot-transition 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-new(card-transition1) {
+  animation: 
+      screenshot-transition 0.5s cubic-bezier(0.4, 0, 0.2, 1) reverse;
+}
+        </code></pre>
+      </div>
+
+      <div class="highlight-box">
+        <h3>Étapes de la Transition</h3>
+        <ol>
+          <li>Capture de l'état initial (::view-transition-old)</li>
+          <li>
+            Génération du screenshot de l'état final (::view-transition-new)
+          </li>
+          <li>Animation de transition personnalisée</li>
+          <li>Remplacement de l'état visuel</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2>Mécanisme de Transition entre Screenshots</h2>
+      <ul>
+        <li>
+          <strong>clip-path</strong> : Gère l'effet de glissement/révélation
+        </li>
+        <li>
+          <strong>cubic-bezier</strong> : Courbe d'animation personnalisée
+        </li>
+        <li>
+          <strong>Opacity</strong> : Gestion de la transparence pendant la
+          transition
+        </li>
+      </ul>
+    </section>
+
+    <section id="web-component-placeholder">
+      <h2>Espace pour Web Component de Démonstration</h2>
+      <p>Un espace réservé pour une future démonstration interactive.</p>
+    </section>
+
+    <footer>
+      <p>🚀 Démonstration avancée des capacités de View Transitions API</p>
+    </footer>
+
+    <script>
+      // Script de démo minimal
+      console.log("Démonstration View Transitions API");
+    </script>
   </body>
-  <script src="./scripts/script.js"></script>
 </html>
