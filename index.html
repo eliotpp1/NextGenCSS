@@ -89,54 +89,86 @@
     </section>
 
     <section>
-      <h2>Processus de Transition Personnalisé pour chaque Carte</h2>
+      <h2>Processus de Transition Personnalisé</h2>
+
       <div class="highlight-box">
-        <h3>Comment personnaliser le transition d'un carte ?</h3>
+        <h3>Personnalisation des Transitions</h3>
         <p>
-          Chaque carte peut avoir une transition personnalisée. Par exemple, la
-          carte 1 peut se faire un tour complet (flip) afin de s'agrandir,
-          tandis que la carte 2 peut s'agrandir en faisant un fondu. Le code
-          ci-dessous montre comment définir une transition personnalisée pour la
-          carte 1.
+          L'API View Transitions permet de créer des animations personnalisées
+          pour chaque élément. Prenons l'exemple de la carte 1 qui va effectuer
+          un effet de rotation (flip) lors de son agrandissement.
         </p>
       </div>
 
-      <div class="screenshot-comparison">
-        <div class="screenshot" id="initial">
-          <img
-            src="/api/placeholder/500/300?text=Avant+Transition"
-            alt="État initial"
-          />
-          <p>État Initial (::view-transition-old)</p>
+      <div class="steps-container">
+        <div class="step">
+          <h4>1. Définir les Keyframes</h4>
+          <show-code subject="keyframes"></show-code>
+          <p>
+            Créez une animation personnalisée en définissant les étapes de
+            transformation. Ici, nous créons un effet de rotation de 0 à 180
+            degrés.
+          </p>
         </div>
-        <div class="screenshot" id="final">
-          <img
-            src="/api/placeholder/500/300?text=Après+Transition"
-            alt="État final"
-          />
-          <p>État Final (::view-transition-new)</p>
+
+        <div class="step">
+          <h4>2. Nommer la Transition</h4>
+          <show-code subject="naming"></show-code>
+          <p>
+            Attribuez un nom unique à la transition de la carte. La classe
+            <code>.animate</code> permet de contrôler quand l'animation
+            s'applique.
+          </p>
+        </div>
+
+        <div class="step">
+          <h4>3. Animer les États de Transition</h4>
+          <show-code subject="transition-states"></show-code>
+          <p>
+            Utilisez <code>::view-transition-old</code> et
+            <code>::view-transition-new</code>
+            pour définir les animations de l'état initial et final.
+          </p>
+        </div>
+
+        <div class="step">
+          <h4>4. Déclencher la Transition</h4>
+          <show-code subject="trigger"></show-code>
+          <p>
+            Utilisez <code>document.startViewTransition()</code> pour déclencher
+            la transition avec la modification du DOM.
+          </p>
         </div>
       </div>
 
       <div class="highlight-box">
-        <h3>Mécanisme Technique de Transition</h3>
-        <show-code subject="mecanisme"></show-code>
+        <h3>Visualisation du Processus</h3>
+        <div class="screenshot-comparison">
+          <div class="screenshot" id="initial">
+            <img
+              src="/api/placeholder/500/300?text=État+Initial"
+              alt="État initial avant transition"
+            />
+            <p>État Initial (Capture avant modification)</p>
+          </div>
+          <div class="screenshot" id="final">
+            <img
+              src="/api/placeholder/500/300?text=État+Final"
+              alt="État final après transition"
+            />
+            <p>État Final (Nouvelle configuration)</p>
+          </div>
+        </div>
       </div>
 
       <div class="highlight-box">
-        <h3>Étapes de la Transition</h3>
-        <ol>
-          <li>
-            1. Capture de
-            <a href="#initial">l'état initial (::view-transition-old)</a>
-          </li>
-          <li>
-            2. Génération du screenshot de
-            <a href="#final">l'état final (::view-transition-new)</a>
-          </li>
-          <li>3. Animation de transition personnalisée</li>
-          <li>4. Remplacement de l'état visuel</li>
-        </ol>
+        <h3>Avantages Clés</h3>
+        <ul>
+          <li>Animation native du navigateur</li>
+          <li>Performance optimisée</li>
+          <li>Personnalisation fine possible</li>
+          <li>Fallback automatique pour les navigateurs non-supportés</li>
+        </ul>
       </div>
     </section>
 
