@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".container");
   const cards = document.querySelectorAll(".card");
   let activeCard = null;
 
-  cards.forEach((card, index) => {
+  cards.forEach((card) => {
     card.addEventListener("click", (event) => {
       event.stopPropagation();
 
@@ -11,10 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (document.startViewTransition) {
           document.startViewTransition(() => {
             card.classList.remove("expanded");
+            container.classList.remove("has-expanded-card");
             activeCard = null;
           });
         } else {
           card.classList.remove("expanded");
+          container.classList.remove("has-expanded-card");
           activeCard = null;
         }
         return;
@@ -28,12 +31,22 @@ document.addEventListener("DOMContentLoaded", () => {
       // Utiliser View Transition API si supportée
       if (document.startViewTransition) {
         document.startViewTransition(() => {
-          card.classList.toggle("expanded");
-          activeCard = card.classList.contains("expanded") ? card : null;
+          // Réinitialiser les autres cartes
+          cards.forEach((c) => c.classList.remove("expanded"));
+
+          // Agrandir la carte cliquée
+          card.classList.add("expanded");
+          container.classList.add("has-expanded-card");
+          activeCard = card;
         });
       } else {
-        card.classList.toggle("expanded");
-        activeCard = card.classList.contains("expanded") ? card : null;
+        // Réinitialiser les autres cartes
+        cards.forEach((c) => c.classList.remove("expanded"));
+
+        // Agrandir la carte cliquée
+        card.classList.add("expanded");
+        container.classList.add("has-expanded-card");
+        activeCard = card;
       }
     });
   });
@@ -44,10 +57,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (document.startViewTransition) {
         document.startViewTransition(() => {
           activeCard.classList.remove("expanded");
+          container.classList.remove("has-expanded-card");
           activeCard = null;
         });
       } else {
         activeCard.classList.remove("expanded");
+        container.classList.remove("has-expanded-card");
         activeCard = null;
       }
     }
