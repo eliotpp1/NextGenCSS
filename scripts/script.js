@@ -12,11 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (document.startViewTransition) {
           document.startViewTransition(() => {
             card.classList.remove("expanded");
+
             container.classList.remove("has-expanded-card");
             activeCard = null;
+            requestAnimationFrame(() => {
+              card.classList.remove("animate");
+            });
           });
         } else {
           card.classList.remove("expanded");
+          card.classList.remove("animate");
           container.classList.remove("has-expanded-card");
           activeCard = null;
         }
@@ -28,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         activeCard.classList.remove("expanded");
       }
 
+      card.classList.add("animate");
       // Utiliser View Transition API si supportée
       if (document.startViewTransition) {
         document.startViewTransition(() => {
@@ -57,11 +63,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (document.startViewTransition) {
         document.startViewTransition(() => {
           activeCard.classList.remove("expanded");
+          activeCard.classList.remove("animate");
           container.classList.remove("has-expanded-card");
           activeCard = null;
         });
       } else {
         activeCard.classList.remove("expanded");
+        activeCard.classList.remove("animate");
         container.classList.remove("has-expanded-card");
         activeCard = null;
       }

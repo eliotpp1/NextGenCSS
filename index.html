@@ -91,99 +91,6 @@ cards.forEach((card, index) => {
     </section>
 
     <section>
-      <h2>Démonstration Détaillée : Grille Interactive</h2>
-
-      <div class="highlight-box">
-        <h3>Structure CSS Grid Dynamique</h3>
-        <pre><code>
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.2rem;
-  resize: both;  /* Permet de redimensionner le conteneur */
-  overflow: auto;
-}
-
-.card {
-  /* Utilisation des attributs data pour le placement */
-  grid-column: attr(data-column);
-  grid-row: attr(data-row);
-}
-        </code></pre>
-        <p>
-          La grille utilise une configuration 2x2 avec des cartes positionnées
-          dynamiquement via des attributs data. Le conteneur est
-          redimensionnable, démontrant la flexibilité du layout.
-        </p>
-      </div>
-
-      <div class="highlight-box">
-        <h3>View Transitions Personnalisées</h3>
-        <pre><code>
-.id1 { view-transition-name: card-transition1; }
-.id2 { view-transition-name: card-transition2; }
-
-::view-transition-new(card-transition1) {
-  animation: fade-in 0.2s;
-}
-::view-transition-old(card-transition1) {
-  animation: fade-out 0.2s;
-}
-        </code></pre>
-        <p>
-          Chaque carte possède un nom de transition unique, permettant des
-          animations individualisées. Les pseudo-éléments ::view-transition
-          définissent des animations de fondu personnalisées.
-        </p>
-      </div>
-
-      <div class="highlight-box">
-        <h3>Logique JavaScript d'Interaction</h3>
-        <pre><code>
-document.startViewTransition(() => {
-  // Modification du DOM
-  card.classList.toggle('expanded');
-});
-        </code></pre>
-        <p>
-          L'API View Transitions capte automatiquement les changements de DOM et
-          génère une transition fluide. La méthode `startViewTransition()` gère
-          toute la complexité de l'animation.
-        </p>
-      </div>
-
-      <div class="highlight-box">
-        <h3>Fonctionnalités Clés</h3>
-        <ul>
-          <li>Agrandissement dynamique des cartes</li>
-          <li>Fermeture en cliquant à l'extérieur</li>
-          <li>Gestion de l'état actif</li>
-          <li>Fallback pour navigateurs non-supportés</li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <h2>Principes Techniques</h2>
-      <ul>
-        <li>
-          <strong>Nommage des Transitions :</strong>
-          Chaque carte a un identifiant unique de transition
-          (<code>view-transition-name</code>)
-        </li>
-        <li>
-          <strong>Animations Personnalisées :</strong>
-          Utilisation des pseudo-éléments <code>::view-transition-new</code> et
-          <code>::view-transition-old</code>
-        </li>
-        <li>
-          <strong>Gestion Cross-Browser :</strong>
-          Vérification de support via <code>document.startViewTransition</code>
-        </li>
-      </ul>
-    </section>
-
-    <section>
       <h2>Processus de Transition</h2>
 
       <div class="screenshot-comparison">
@@ -206,29 +113,28 @@ document.startViewTransition(() => {
       <div class="highlight-box">
         <h3>Mécanisme Technique de Transition</h3>
         <pre><code>
-@keyframes screenshot-transition {
-  from {
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-      opacity: 1;
+@keyframes flip {
+  0% {
+    transform: perspective(1000px) rotateY(0deg);
   }
-  to {
-      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-      opacity: 0;
+  50% {
+    transform: perspective(1000px) rotateY(90deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(180deg);
   }
 }
 
-id1 {
+id1.animate {
   view-transition-name: card-transition1;
 }
 
 ::view-transition-old(card-transition1) {
-  animation: 
-      screenshot-transition 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: flip 0.5s ease-out;
 }
 
 ::view-transition-new(card-transition1) {
-  animation: 
-      screenshot-transition 0.5s cubic-bezier(0.4, 0, 0.2, 1) reverse;
+  animation: flip 0.5s ease-out;
 }
         </code></pre>
       </div>
@@ -244,22 +150,6 @@ id1 {
           <li>Remplacement de l'état visuel</li>
         </ol>
       </div>
-    </section>
-
-    <section>
-      <h2>Mécanisme de Transition entre Screenshots</h2>
-      <ul>
-        <li>
-          <strong>clip-path</strong> : Gère l'effet de glissement/révélation
-        </li>
-        <li>
-          <strong>cubic-bezier</strong> : Courbe d'animation personnalisée
-        </li>
-        <li>
-          <strong>Opacity</strong> : Gestion de la transparence pendant la
-          transition
-        </li>
-      </ul>
     </section>
 
     <section id="web-component-placeholder">
