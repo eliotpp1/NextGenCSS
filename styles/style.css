@@ -228,13 +228,6 @@ body {
   view-transition-name: card-transition4;
 }
 
-::view-transition-new(card-transition1) {
-  animation: fade-in 0.2s;
-}
-::view-transition-old(card-transition1) {
-  animation: fade-out 0.2s;
-}
-
 @keyframes fade-out {
   from {
     z-index: 1;
@@ -253,6 +246,13 @@ body {
   }
 }
 
+::view-transition-new(card-transition1) {
+  animation: fade-in 0.2s;
+}
+::view-transition-old(card-transition1) {
+  animation: fade-out 0.2s;
+}
+
 ::view-transition-new(card-transition2),
 ::view-transition-old(card-transition2) {
   animation-duration: 0.2s;
@@ -265,7 +265,7 @@ body {
 
 ::view-transition-new(card-transition4),
 ::view-transition-old(card-transition4) {
-  animation-duration: 0.2s;
+  animation-duration: 2s;
 }
 
 /* Responsive Adjustments */
