@@ -2,7 +2,7 @@ class ShowCode extends HTMLElement {
   // Définition des modèles de code comme propriétés statiques
   static templates = {
     comparaison: `// Exemple de base sans utiliser l'api view transition
-  cards.forEach((card, index) => {
+  cards.forEach((card) => {
     card.addEventListener("click", (event) => {
       // Modification du DOM
       card.classList.toggle("expanded");
@@ -10,9 +10,11 @@ class ShowCode extends HTMLElement {
   });
   
   // Exemple de base <span class="highlight">avec l'api view transition</span>
-  cards.forEach((card, index) => {
+  cards.forEach((card) => {
     card.addEventListener("click", (event) => {
-      <span class="highlight">document.startViewTransition(() => {
+        card.classList.add("animate");
+        if (document.startViewTransition) {
+        document.startViewTransition(() => {
         // Modification du DOM
         card.classList.toggle("expanded");
       });</span>
@@ -32,7 +34,7 @@ class ShowCode extends HTMLElement {
   }
   
   // Animation sur un élément spécifique
-  .id1 {
+  .id1.animate {
     view-transition-name: card-transition1;
   }
   

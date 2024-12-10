@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // Si on reclique sur la carte déjà agrandie, on la réduit
       if (activeCard === card) {
         if (document.startViewTransition) {
-          card.style.zIndex = 0;
           document.startViewTransition(() => {
             card.classList.remove("expanded");
 
@@ -37,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
       card.classList.add("animate");
       // Utiliser View Transition API si supportée
       if (document.startViewTransition) {
-        card.style.zIndex = 1;
         document.startViewTransition(() => {
           // Réinitialiser les autres cartes
           cards.forEach((c) => c.classList.remove("expanded"));
@@ -63,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (event) => {
     if (activeCard && !activeCard.contains(event.target)) {
       if (document.startViewTransition) {
-        activeCard.style.zIndex = 0;
         document.startViewTransition(() => {
           activeCard.classList.remove("expanded");
           activeCard.classList.remove("animate");
