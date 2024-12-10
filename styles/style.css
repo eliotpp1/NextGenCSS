@@ -84,7 +84,6 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }
 
@@ -132,33 +131,140 @@ table {
 
 /* Custom CSS mobile first */
 :root {
-  --padding: 0.5rem;
-  --bg-primary: #f5f5f5;
-  --bg-container: #fff;
-  --bg-card: #333;
-  --bg-card-expanded: #222;
-  --text-color: #333;
-  --text-color-card: #fff;
-  --border-radius: 0.7rem;
-  --transition-duration: 0.4s;
+  --bg-primary: #f0f4f8;
+  --text-primary: #2d3748;
+  --accent-color: #3182ce;
+  --card-bg: #ffffff;
+  --highlight-bg: #fff3cd;
+  --padding: 1.5rem;
+  --border-radius: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-color);
-  font-size: 16px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   line-height: 1.6;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  color: var(--accent-color);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  color: var(--accent-color);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.5rem;
+}
+
+section {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+pre {
+  background-color: #f1f5f9;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1rem 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.browser-support {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.browser-support div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.browser-support .supported::before,
+.browser-support .unsupported::before {
+  content: "●";
+  font-size: 1.2rem;
+}
+
+.browser-support .supported::before {
+  color: green;
+}
+
+.browser-support .unsupported::before {
+  color: red;
+}
+
+.highlight-box {
+  background-color: #f4f4f8;
+  border-left: 4px solid #3182ce;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+ul,
+ol {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.screenshot-comparison {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+  gap: 1rem;
+}
+
+.screenshot {
+  flex: 1;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.screenshot img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Animation */
 .container {
   resize: both;
   overflow: auto;
   margin: 1.2rem auto;
   padding: var(--padding);
   max-width: 1200px;
-  background-color: var(--bg-container);
-  border: 0.3rem solid var(--text-color);
+  background-color: var(--bg-primary);
+  border: 0.3rem solid var(--text-primary);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.2rem;
@@ -167,7 +273,7 @@ body {
 }
 
 .card {
-  background-color: var(--bg-card);
+  background-color: var(--accent-color);
   padding: var(--padding);
   border-radius: var(--border-radius);
   color: var(--text-color-card);
@@ -177,20 +283,18 @@ body {
   font-size: 40px;
   cursor: pointer;
   contain: layout;
+  z-index: 1;
 }
 
 .card[data-column="1"] {
   grid-column: 1;
 }
-
 .card[data-column="2"] {
   grid-column: 2;
 }
-
 .card[data-row="1"] {
   grid-row: 1;
 }
-
 .card[data-row="2"] {
   grid-row: 2;
 }
@@ -200,75 +304,123 @@ body {
   color: var(--text-color-card);
 }
 
+.container.has-expanded-card .card:not(.expanded) {
+  opacity: 0;
+  filter: blur(2px);
+}
+
 .card.expanded {
   position: absolute;
   grid-row: 1 / 3;
   grid-column: 1 / 3;
   inset: 0;
-  background-color: var(--bg-card-expanded);
+  background-color: var(--text-primary);
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
 .card.expanded p {
   color: red;
   font-size: 3rem;
 }
-.id1 {
+
+.id1.animate {
   view-transition-name: card-transition1;
 }
-
-.id2 {
+.id2.animate {
   view-transition-name: card-transition2;
 }
-
-.id3 {
+.id3.animate {
   view-transition-name: card-transition3;
 }
-
-.id4 {
+.id4.animate {
   view-transition-name: card-transition4;
 }
 
 ::view-transition-new(card-transition1) {
-  animation: fade-in 0.2s;
-}
-::view-transition-old(card-transition1) {
-  animation: fade-out 0.2s;
+  animation: flip 0.5s ease-out;
 }
 
+::view-transition-old(card-transition1) {
+  animation: flip 0.5s ease-out;
+}
+
+::view-transition-new(card-transition2) {
+  animation: fade-in 0.5s ease-out;
+}
+
+::view-transition-old(card-transition2) {
+  animation: fade-out 0.5s ease-out;
+}
+
+::view-transition-new(card-transition3) {
+  animation: fadeInRotate 0.5s ease-out;
+}
+
+::view-transition-old(card-transition3) {
+  animation: fadeInRotate 0.5s ease-out;
+}
+
+::view-transition-new(card-transition4) {
+  animation: bounce 0.5s ease-out;
+}
+
+::view-transition-old(card-transition4) {
+  animation: bounce 0.5s ease-out;
+}
 @keyframes fade-out {
   from {
-    z-index: 1;
+    opacity: 1;
   }
   to {
-    z-index: 0;
+    opacity: 0;
   }
 }
 
 @keyframes fade-in {
   from {
-    z-index: 0;
+    opacity: 0;
   }
   to {
-    z-index: 1;
+    opacity: 1;
   }
 }
 
-::view-transition-new(card-transition2),
-::view-transition-old(card-transition2) {
-  animation-duration: 0.2s;
+@keyframes flip {
+  0% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(90deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(180deg);
+  }
 }
 
-::view-transition-new(card-transition3),
-::view-transition-old(card-transition3) {
-  animation-duration: 0.2s;
+@keyframes fadeInRotate {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
 }
 
-::view-transition-new(card-transition4),
-::view-transition-old(card-transition4) {
-  animation-duration: 0.2s;
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
   .container {
     grid-template-columns: 1fr;
