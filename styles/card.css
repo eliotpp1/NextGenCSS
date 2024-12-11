@@ -24,19 +24,47 @@
     transition: 0.2s ease;
 }
 
-card-element[data-column="1"] {
+.card-title-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card.expanded {
+    position: absolute;
+    grid-row: 1 / 3;
+    grid-column: 1 / 3;
+    inset: var(--padding);
+    z-index: 10;
+    width: calc(100% - (var(--padding) * 2));
+    height: calc(100% - (var(--padding) * 2));
+
+    h3 {
+        font-size: 2rem;
+    }
+}
+
+.card.expanded p {
+    color: red;
+    font-size: 3rem;
+}
+
+.id1 {
     grid-column: 1;
-}
-
-card-element[data-column="2"] {
-    grid-column: 2;
-}
-
-card-element[data-row="1"] {
     grid-row: 1;
 }
 
-card-element[data-row="2"] {
+.id2 {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.id3 {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.id4 {
+    grid-column: 2;
     grid-row: 2;
 }
 
@@ -78,26 +106,33 @@ card-element[data-row="2"] {
     grid-template-rows: auto 1fr auto;
     gap: 4px;
     padding: 12px;
+    max-width: 100%;
+    overflow: hidden;
 
     .card-title {
         margin: 0;
         font-size: clamp(0.875rem, 1.2vw, 1rem);
         font-weight: 600;
         color: #1f2937;
+        display: block;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        width: 100%;
     }
 
     .card-text {
         margin: 0;
         font-size: clamp(0.75rem, 1vw, 0.875rem);
         color: #6b7280;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
         line-height: 1.3;
+        width: 100%;
+        word-break: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     .card-price {
@@ -118,11 +153,36 @@ card-element[data-row="2"] {
 @media screen and (max-width: 768px) {
     .container {
         grid-template-columns: 1fr;
-        min-height: 200px;
     }
 
-    card-element[data-column] {
+    .id1 {
         grid-column: 1;
+        grid-row: 1;
+    }
+
+    .id2 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .id3 {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .id4 {
+        grid-column: 1;
+        grid-row: 4;
+    }
+
+    .card {
+        flex-shrink: 0;
+    }
+
+    .card.expanded {
+        inset: var(--padding-mobile, 1rem);
+        width: calc(100% - (var(--padding-mobile, 1rem) * 2));
+        height: calc(100% - (var(--padding-mobile, 1rem) * 2));
     }
 }
 
