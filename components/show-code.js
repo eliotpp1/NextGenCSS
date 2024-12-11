@@ -1,5 +1,9 @@
 class ShowCode extends HTMLElement {
-  // Définition des modèles de code comme propriétés statiques
+  constructor() {
+    super();
+  }
+
+  // Modèles de code comme propriétés statiques
   static templates = {
     comparaison: `// Exemple de base sans utiliser l'API View Transition
   cards.forEach((card) => {
@@ -8,7 +12,7 @@ class ShowCode extends HTMLElement {
       card.classList.toggle("expanded");
     });
   });
-  
+
   // Exemple de base avec l'API View Transition
   cards.forEach((card) => {
     card.addEventListener("click", (event) => {
@@ -33,17 +37,17 @@ class ShowCode extends HTMLElement {
       transform: perspective(1000px) rotateY(180deg);
     }
   }
-  
+
   // Animation sur un élément spécifique
   .id1.animate {
     view-transition-name: card-transition1;
   }
-  
+
   // Animations de transition
   ::view-transition-old(card-transition1) {
     animation: flip 0.5s ease-out;
   }
-  
+
   ::view-transition-new(card-transition1) {
     animation: flip 0.5s ease-out reverse;
   }`,
@@ -69,7 +73,7 @@ class ShowCode extends HTMLElement {
   ::view-transition-old(card-transition1) {
     animation: flip 0.5s ease-out;
   }
-  
+
   // Animation de l'état final
   ::view-transition-new(card-transition1) {
     animation: flip 0.5s ease-out reverse;
@@ -94,6 +98,7 @@ class ShowCode extends HTMLElement {
 
   connectedCallback() {
     const subject = this.getAttribute("subject") || "comparaison";
+    const language = this.getAttribute("language") || "javascript";
 
     if (!ShowCode.templates.hasOwnProperty(subject)) {
       console.error(`Sujet "${subject}" non trouvé`);
@@ -101,7 +106,9 @@ class ShowCode extends HTMLElement {
     }
 
     this.innerHTML = `
-        <pre><code>${this.escapeHtml(ShowCode.templates[subject])}</code></pre>
+        <pre ><code class="language-${language}">${this.escapeHtml(
+      ShowCode.templates[subject]
+    )}</code></pre>
       `;
   }
 

@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/reset.css" />
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/a11y-light.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+
+    <script>
+      hljs.highlightAll();
+    </script>
 
     <script src="./scripts/script.js" defer></script>
     <script src="./components/show-code.js" defer></script>
@@ -33,8 +42,7 @@
         </p>
       </div>
       <h2>Comparaison Simple vs View Transitions</h2>
-
-      <show-code subject="comparaison"></show-code>
+      <show-code subject="comparaison" language="js"></show-code>
       <div class="highlight-box">
         <h3>La Différence Clé</h3>
         <p>
@@ -103,7 +111,7 @@
       <div class="steps-container">
         <div class="step">
           <h4>1. Définir les Keyframes</h4>
-          <show-code subject="keyframes"></show-code>
+          <show-code subject="keyframes" language="css"></show-code>
           <p>
             Créez une animation personnalisée en définissant les étapes de
             transformation. Ici, nous créons un effet de rotation de 0 à 180
@@ -113,7 +121,7 @@
 
         <div class="step">
           <h4>2. Nommer la Transition</h4>
-          <show-code subject="naming"></show-code>
+          <show-code subject="naming" language="css"></show-code>
           <p>
             Attribuez un nom unique à la transition de la carte. La classe
             <code>.animate</code> permet de contrôler quand l'animation
@@ -123,7 +131,7 @@
 
         <div class="step">
           <h4>3. Animer les États de Transition</h4>
-          <show-code subject="transition-states"></show-code>
+          <show-code subject="transition-states" language="css"></show-code>
           <p>
             Utilisez <code>::view-transition-old</code> et
             <code>::view-transition-new</code>
@@ -133,7 +141,7 @@
 
         <div class="step">
           <h4>4. Déclencher la Transition</h4>
-          <show-code subject="trigger"></show-code>
+          <show-code subject="trigger" language="js"></show-code>
           <p>
             Utilisez <code>document.startViewTransition()</code> pour déclencher
             la transition avec la modification du DOM.
