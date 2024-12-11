@@ -304,3 +304,72 @@ ol {
     grid-template-columns: 1fr;
   }
 }
+
+/* Div masquée par défaut */
+.browser-supports {
+  display: none;
+}
+
+/* Messages spécifiques pour chaque cas */
+@supports not (grid-template-rows: subgrid) {
+  .browser-supports {
+    display: block;
+    padding: 1rem;
+    background-color: #fff8f8;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin: 1rem auto;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .no-support-subgrid::before {
+    content: "⚠️ Votre navigateur ne supporte pas 'subgrid'. Veuillez le mettre à jour.";
+    display: block;
+    color: red;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@supports not (view-transition-name: example) {
+  .browser-supports {
+    display: block;
+    padding: 1rem;
+    background-color: #fff8f8;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin: 1rem auto;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .no-support-view-transition::before {
+    content: "⚠️ Votre navigateur ne supporte pas 'View Transitions API'. Certaines animations peuvent ne pas fonctionner.";
+    display: block;
+    color: orange;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@supports not (container-type: inline-size) {
+  .browser-supports {
+    display: block;
+    padding: 1rem;
+    background-color: #fff8f8;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin: 1rem auto;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .no-support-container-queries::before {
+    content: "⚠️ Votre navigateur ne supporte pas les 'Container Queries'. La mise en page pourrait être incorrecte.";
+    display: block;
+    color: purple;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+}
