@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/a11y-light.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-
-    <!-- and it's easy to individually load additional languages -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/baseline-status@1/baseline-status.min.js"
+      type="module"
+    ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
 
     <script>
@@ -84,12 +86,7 @@
 
     <section>
       <h2>Support des Navigateurs</h2>
-      <div class="browser-support">
-        <div class="supported">Chrome</div>
-        <div class="supported">Edge</div>
-        <div class="unsupported">Firefox</div>
-        <div class="supported">Safari</div>
-      </div>
+      <baseline-status featureId="view-transitions"></baseline-status>
     </section>
 
     <section>
