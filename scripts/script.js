@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector(".container");
+  const container = document.querySelector(".container_card");
   const cards = document.querySelectorAll(".card");
   let activeCard = null;
 
