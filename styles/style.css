@@ -80,33 +80,6 @@ code {
   min-height: 300px;
 }
 
-.browser-support {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.browser-support div {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.browser-support .supported::before,
-.browser-support .unsupported::before {
-  content: "●";
-  font-size: 1.2rem;
-}
-
-.browser-support .supported::before {
-  color: green;
-}
-
-.browser-support .unsupported::before {
-  color: red;
-}
-
 .highlight-box {
   background-color: #f4f4f8;
   border-left: 4px solid #3182ce;
@@ -335,7 +308,7 @@ baseline-status {
   }
 }
 
-.gif_prevu{
+.gif_prevu {
   width: 100%;
   height: auto;
   display: block;
