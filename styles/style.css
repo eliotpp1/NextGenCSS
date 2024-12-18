@@ -1,134 +1,3 @@
-/* Reset CSS */
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-}
-
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-    display: block;
-}
-
-body {
-    line-height: 1;
-}
-
-ol,
-ul {
-    list-style: none;
-}
-
-blockquote,
-q {
-    quotes: none;
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-    content: "";
-    content: none;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
 /* Custom CSS mobile first */
 :root {
     --bg-primary: #f0f4f8;
@@ -194,6 +63,10 @@ pre {
     word-break: break-all;
 }
 
+code {
+  padding: var(--padding);
+}
+
 .browser-support {
     display: flex;
     justify-content: center;
@@ -234,6 +107,13 @@ ol {
     margin-bottom: 1rem;
 }
 
+.highlight-box a {
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  color: #3182ce;
+}
+
 .screenshot-comparison {
     display: flex;
     justify-content: space-between;
@@ -256,7 +136,6 @@ ol {
     display: block;
 }
 
-/* Animation */
 
 
 /*.container.has-expanded-card .card:not(.expanded) {*/
@@ -376,4 +255,72 @@ baseline-status {
     max-width: 100%;
     padding-block: 1rem;
     padding-inline: .75rem;
+}
+/* Div masquée par défaut */
+.browser-supports {
+  display: none;
+}
+
+/* Messages spécifiques pour chaque cas */
+@supports not (grid-template-rows: subgrid) {
+  .browser-supports {
+    display: block;
+    padding: 1rem;
+    background-color: #fff8f8;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin: 1rem auto;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .no-support-subgrid::before {
+    content: "⚠️ Votre navigateur ne supporte pas 'subgrid'. Veuillez le mettre à jour.";
+    display: block;
+    color: red;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@supports not (view-transition-name: example) {
+  .browser-supports {
+    display: block;
+    padding: 1rem;
+    background-color: #fff8f8;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin: 1rem auto;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .no-support-view-transition::before {
+    content: "⚠️ Votre navigateur ne supporte pas 'View Transitions API'. Certaines animations peuvent ne pas fonctionner.";
+    display: block;
+    color: orange;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@supports not (container-type: inline-size) {
+  .browser-supports {
+    display: block;
+    padding: 1rem;
+    background-color: #fff8f8;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin: 1rem auto;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .no-support-container-queries::before {
+    content: "⚠️ Votre navigateur ne supporte pas les 'Container Queries'. La mise en page pourrait être incorrecte.";
+    display: block;
+    color: purple;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
 }

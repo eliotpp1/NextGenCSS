@@ -5,10 +5,17 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <link href="./styles/style.css" rel="stylesheet"/>
     <link href="./styles/card.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="./styles/a11y-light.css" />
     <script defer src="./scripts/script.js"></script>
     <script defer src="./components/show-code.js"></script>
     <script defer src="./components/card.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/baseline-status@1/baseline-status.min.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
     <title>Démonstration Complète View Transitions API</title>
 </head>
 <body>
@@ -18,13 +25,30 @@
         Découvrez la puissance des transitions natives du Web avec l'API View
         Transitions, un moyen révolutionnaire de créer des animations fluides et
         performantes.
-    </p>
-</header>
+      </p>
+      <div class="browser-supports">
+        Votre navigateur ne supporte pas certaines fonctionnalités modernes. ⚠️
+        <div class="no-support-subgrid"></div>
+        <div class="no-support-view-transition"></div>
+        <div class="no-support-container-queries"></div>
+      </div>
+    </header>
 
-<section>
-    <h2>Comparaison Simple vs View Transitions</h2>
-    <show-code subject="comparaison"></show-code>
-    <div class="highlight-box">
+    <section>
+      <div class="highlight-box">
+        <h3>Exemple sur une grid</h3>
+        <p>
+          Pour montrer comment utiliser l'API View Transitions, nous allons
+          créer une simple grid de cartes. Chaque carte peut être déplacée en
+          cliquant dessus. Cette grid est de format 2x2, avec 4 cartes au total.
+          Quand clique sur une carte, sa taille prends 100% de la grid,
+          recouvrant les autres cartes. En recliquant sur la carte ou en
+          cliquant à côté, elle revient à sa taille initiale.
+        </p>
+      </div>
+      <h2>Comparaison Simple vs View Transitions</h2>
+      <show-code subject="comparaison" language="js"></show-code>
+      <div class="highlight-box">
         <h3>La Différence Clé</h3>
         <p>
             La seule ligne <code>document.startViewTransition()</code> transforme
@@ -67,51 +91,97 @@
     <ul>
         <li>Transition native du navigateur</li>
         <li>Performance optimisée</li>
-        <li>Minimal overhead</li>
-        <li>Fallback automatique</li>
-    </ul>
-</section>
+        <li>
+          Charge minimale (nécessite que très peu de code. Souvent, une seule
+          ligne suffit pour activer une transition fluide)
+        </li>
+        <li>
+          Fallback automatique (L'API est conçue avec une gestion des cas où
+          elle n'est pas prise en charge par le navigateur)
+        </li>
+      </ul>
+    </section>
 
-<section>
-    <h2>Processus de Transition</h2>
+    <section>
+      <h2>Processus de Transition Personnalisé</h2>
 
-    <div class="screenshot-comparison">
-        <div class="screenshot">
-            <img
-                    alt="État initial"
-                    src="/api/placeholder/500/300?text=Avant+Transition"
-            />
-            <p>État Initial (::view-transition-old)</p>
+      <div class="highlight-box">
+        <h3>Personnalisation des Transitions</h3>
+        <p>
+          L'API View Transitions permet de créer des animations personnalisées
+          pour chaque élément. Prenons l'exemple de la carte 1 qui va effectuer
+          un effet de rotation (flip) lors de son agrandissement.
+        </p>
+      </div>
+
+      <div class="steps-container">
+        <div class="step">
+          <h4>1. Définir les Keyframes</h4>
+          <show-code subject="keyframes" language="css"></show-code>
+          <p>
+            Créez une animation personnalisée en définissant les étapes de
+            transformation. Ici, nous créons un effet de rotation de 0 à 180
+            degrés.
+          </p>
         </div>
-        <div class="screenshot">
-            <img
-                    alt="État final"
-                    src="/api/placeholder/500/300?text=Après+Transition"
-            />
-            <p>État Final (::view-transition-new)</p>
+
+        <div class="step">
+          <h4>2. Nommer la Transition</h4>
+          <show-code subject="naming" language="css"></show-code>
+          <p>
+            Attribuez un nom unique à la transition de la carte. La classe
+            <code>.animate</code> permet de contrôler quand l'animation
+            s'applique.
+          </p>
         </div>
-    </div>
 
-    <div class="highlight-box">
-        <h3>Mécanisme Technique de Transition</h3>
-        <show-code subject="mecanisme"></show-code>
-    </div>
+        <div class="step">
+          <h4>3. Animer les États de Transition</h4>
+          <show-code subject="transition-states" language="css"></show-code>
+          <p>
+            Utilisez <code>::view-transition-old</code> et
+            <code>::view-transition-new</code>
+            pour définir les animations de l'état initial et final.
+          </p>
+        </div>
 
-    <div class="highlight-box">
-        <h3>Étapes de la Transition</h3>
-        <ol>
-            <li>Capture de l'état initial (::view-transition-old)</li>
-            <li>
-                Génération du screenshot de l'état final (::view-transition-new)
-            </li>
-            <li>Animation de transition personnalisée</li>
-            <li>Remplacement de l'état visuel</li>
-        </ol>
-    </div>
-</section>
+        <div class="step">
+          <h4>4. Déclencher la Transition</h4>
+          <show-code subject="trigger" language="js"></show-code>
+          <p>
+            Utilisez <code>document.startViewTransition()</code> pour déclencher
+            la transition avec la modification du DOM.
+          </p>
+        </div>
+      </div>
 
-<section id="web-component-placeholder">
-    <h2>Espace pour Web Component de Démonstration</h2>
+      <div class="highlight-box">
+        <h3>Visualisation du Processus</h3>
+        <div class="screenshot-comparison">
+          <div class="screenshot" id="initial">
+            <img
+              src="/api/placeholder/500/300?text=État+Initial"
+              alt="État initial avant transition"
+            />
+            <p>État Initial (Capture avant modification)</p>
+          </div>
+          <div class="screenshot" id="final">
+            <img
+              src="/api/placeholder/500/300?text=État+Final"
+              alt="État final après transition"
+            />
+            <p>État Final (Nouvelle configuration)</p>
+          </div>
+        </div>
+        <p>
+          La transition flip est utilisée pour faire une transition fluide entre
+          l'état initial et final de la carte 1.
+        </p>
+      </div>
+    </section>
+
+    <section id="web-component-placeholder">
+      <h2>Component de Démonstration</h2>
     <div class="container" role="list">
         <card-element class="card id1"
                       description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat venenatis turpis. Aliquam at pharetra nisi. Aenean in ornare tortor, in varius augue. Morbi suscipit interdum tellus, in vulputate ex mattis dictum. Morbi ac laoreet nunc. Aenean eget magna nibh. Sed feugiat rutrum convallis. Nullam ac dui ultrices, mattis lacus porttitor, varius mi. Pellentesque ut lacinia risus."
@@ -127,7 +197,7 @@
         <card-element class="card id4" description="Lorem ipsum" index="4" price="9.99"
                       role="listitem" tabindex="0"
                       title="Test"></card-element>
-
+    </section>
     </div>
 </section>
 
