@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="./styles/style.css" rel="stylesheet"/>
+    <link href="./styles/card.css" rel="stylesheet"/>
     <link rel="stylesheet" href="./styles/reset.css" />
-    <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/a11y-light.css" />
+    <script defer src="./scripts/script.js"></script>
+    <script defer src="./components/show-code.js"></script>
+    <script defer src="./components/card.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/baseline-status@1/baseline-status.min.js" type="module"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-
-    <!-- and it's easy to individually load additional languages -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
-
     <script>
       hljs.highlightAll();
     </script>
-
-    <script src="./scripts/script.js" defer></script>
-    <script src="./components/show-code.js" defer></script>
     <title>Démonstration Complète View Transitions API</title>
-  </head>
-  <body>
-    <header>
-      <h1>View Transitions API</h1>
-      <p>
+</head>
+<body>
+<header>
+    <h1>View Transitions API</h1>
+    <p>
         Découvrez la puissance des transitions natives du Web avec l'API View
         Transitions, un moyen révolutionnaire de créer des animations fluides et
         performantes.
@@ -52,49 +51,44 @@
       <div class="highlight-box">
         <h3>La Différence Clé</h3>
         <p>
-          La seule ligne <code>document.startViewTransition()</code> transforme
-          une transition brutale en une animation fluide et élégante. Le
-          navigateur gère toute la complexité de l'animation pour vous.
+            La seule ligne <code>document.startViewTransition()</code> transforme
+            une transition brutale en une animation fluide et élégante. Le
+            navigateur gère toute la complexité de l'animation pour vous.
         </p>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <section class="highlight-box">
-      <h2>Comment ça marche vraiment ?</h2>
-      <p>
+<section class="highlight-box">
+    <h2>Comment ça marche vraiment ?</h2>
+    <p>
         Imaginez les View Transitions comme un photographe magique qui capture
         instantanément deux photos de votre page web. Une photo avant le
         changement, une photo après. Ensuite, ce photographe fait un tour de
         passe-passe : il fait glisser doucement une photo sur l'autre, créant
         une transition fluide et élégante.
-      </p>
-      <p>
+    </p>
+    <p>
         Au lieu de sauter brutalement d'un état à un autre, votre interface web
         fait une transition en douceur, comme si les éléments étaient vivants et
         se déplaçaient naturellement. C'est un peu comme un fondu au cinéma,
         mais pour les interfaces web.
-      </p>
-      <p>
+    </p>
+    <p>
         Le truc génial ? Vous n'avez pas besoin d'être un expert en animations.
         Le navigateur fait tout le travail difficile pour vous. Il suffit
         d'utiliser <code>document.startViewTransition()</code>, et la magie
         opère !
-      </p>
-    </section>
+    </p>
+</section>
 
-    <section>
-      <h2>Support des Navigateurs</h2>
-      <div class="browser-support">
-        <div class="supported">Chrome</div>
-        <div class="supported">Edge</div>
-        <div class="unsupported">Firefox</div>
-        <div class="supported">Safari</div>
-      </div>
-    </section>
+<section>
+    <h2>Support des Navigateurs</h2>
+    <baseline-status featureId="view-transitions"></baseline-status>
+</section>
 
-    <section>
-      <h2>Principes Clés</h2>
-      <ul>
+<section>
+    <h2>Principes Clés</h2>
+    <ul>
         <li>Transition native du navigateur</li>
         <li>Performance optimisée</li>
         <li>
@@ -188,16 +182,27 @@
 
     <section id="web-component-placeholder">
       <h2>Component de Démonstration</h2>
-      <div class="container">
-        <div class="card id1" data-column="1" data-row="1"><p>Carte 1</p></div>
-        <div class="card id2" data-column="2" data-row="1"><p>Carte 2</p></div>
-        <div class="card id3" data-column="1" data-row="2"><p>Carte 3</p></div>
-        <div class="card id4" data-column="2" data-row="2"><p>Carte 4</p></div>
-      </div>
+    <div class="container" role="list">
+        <card-element class="card id1"
+                      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat venenatis turpis. Aliquam at pharetra nisi. Aenean in ornare tortor, in varius augue. Morbi suscipit interdum tellus, in vulputate ex mattis dictum. Morbi ac laoreet nunc. Aenean eget magna nibh. Sed feugiat rutrum convallis. Nullam ac dui ultrices, mattis lacus porttitor, varius mi. Pellentesque ut lacinia risus."
+                      index="1" price="9.99" role="listitem"
+                      tabindex="0"
+                      title="Test"></card-element>
+        <card-element class="card id2" description="Lorem ipsum" index="2" price="9.99"
+                      role="listitem" tabindex="0"
+                      title="Test"></card-element>
+        <card-element class="card id3" description="Lorem ipsum" index="3" price="9.99"
+                      role="listitem" tabindex="0"
+                      title="Test"></card-element>
+        <card-element class="card id4" description="Lorem ipsum" index="4" price="9.99"
+                      role="listitem" tabindex="0"
+                      title="Test"></card-element>
     </section>
+    </div>
+</section>
 
-    <footer>
-      <p>🚀 Démonstration avancée des capacités de View Transitions API</p>
-    </footer>
-  </body>
+<footer>
+    <p>🚀 Démonstration avancée des capacités de View Transitions API</p>
+</footer>
+</body>
 </html>
