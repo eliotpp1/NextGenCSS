@@ -1,4 +1,4 @@
-.container {
+.container_card {
     margin: 1.2rem auto;
     padding: var(--padding);
     width: 95%;
@@ -145,7 +145,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-    .container {
+    .container_card {
         width: 98%;
         padding: var(--padding-mobile, 1rem);
         gap: 1rem;
@@ -154,7 +154,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    .container {
+    .container_card {
         grid-template-columns: 1fr;
         overflow-y: hidden;
         display: flex;
@@ -179,7 +179,7 @@
 }
 
 @media screen and (max-width: 480px) {
-    .container {
+    .container_card {
         height: 117vh;
     }
     .card {

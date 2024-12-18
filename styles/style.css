@@ -67,6 +67,19 @@ code {
   padding: var(--padding);
 }
 
+.container {
+  margin: 1.2rem auto;
+  padding: var(--padding);
+  max-width: 1200px;
+  background-color: var(--bg-primary);
+  border: 0.3rem solid var(--text-primary);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  position: relative;
+  min-height: 300px;
+}
+
 .browser-support {
     display: flex;
     justify-content: center;
