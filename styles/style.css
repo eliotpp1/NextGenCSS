@@ -85,19 +85,19 @@ code {
   border-left: 4px solid #3182ce;
   padding: 1rem;
   margin: 1rem 0;
+
+  a {
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    color: #3182ce;
+  }
 }
 
 ul,
 ol {
   margin-left: 2rem;
   margin-bottom: 1rem;
-}
-
-.highlight-box a {
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  color: #3182ce;
 }
 
 .screenshot-comparison {
@@ -114,18 +114,18 @@ ol {
   border: 2px solid #e2e8f0;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 }
 
 @media (min-width: 768px) {
   .screenshot-comparison {
     flex-direction: row;
   }
-}
-
-.screenshot img {
-  width: 100%;
-  height: auto;
-  display: block;
 }
 
 /*.container.has-expanded-card .card:not(.expanded) {*/
