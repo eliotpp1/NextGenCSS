@@ -122,16 +122,16 @@ ol {
   }
 }
 
+footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: 600;
+}
 @media (min-width: 768px) {
   .screenshot-comparison {
     flex-direction: row;
   }
 }
-
-/*.container.has-expanded-card .card:not(.expanded) {*/
-/*    opacity: 0;*/
-/*    filter: blur(2px);*/
-/*}*/
 
 .id1.expanded {
   view-transition-name: card-transition1;

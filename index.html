@@ -10,6 +10,7 @@
     <script defer src="./scripts/script.js"></script>
     <script defer src="./components/show-code.js"></script>
     <script defer src="./components/card.js"></script>
+    <script defer src="./components/step-block.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/baseline-status@1/baseline-status.min.js" type="module"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
@@ -43,7 +44,10 @@
           cliquant dessus. Cette grid est de format 2x2, avec 4 cartes au total.
           Quand clique sur une carte, sa taille prends 100% de la grid,
           recouvrant les autres cartes. En recliquant sur la carte ou en
-          cliquant à côté, elle revient à sa taille initiale.
+          cliquant à côté, elle revient à sa taille initiale. Il est important de 
+          préciser que l'API View Transitions est le plus souvent utilisé pour des
+          transitions entre pages, mais nous avons choisi de l'utiliser sur une grid au 
+          sein d'une même page pour pousser plus loin les capacités de l'API.
         </p>
       </div>
       <h2>Comparaison Simple vs View Transitions</h2>
@@ -104,57 +108,18 @@
 
     <section>
       <h2>Processus de Transition Personnalisé</h2>
-
       <div class="highlight-box">
         <h3>Personnalisation des Transitions</h3>
         <p>
           L'API View Transitions permet de créer des animations personnalisées
-          pour chaque élément. Prenons l'exemple de la carte 1 qui va effectuer
+          pour chacun des éléments de notre grid. Prenons l'exemple de la carte 1 qui va effectuer
           un effet de rotation (flip) lors de son agrandissement.
         </p>
       </div>
-
-      <div class="steps-container">
-        <div class="step">
-          <h4>1. Définir les Keyframes</h4>
-          <show-code subject="keyframes" language="css"></show-code>
-          <p>
-            Créez une animation personnalisée en définissant les étapes de
-            transformation. Ici, nous créons un effet de rotation de 0 à 180
-            degrés.
-          </p>
-        </div>
-
-        <div class="step">
-          <h4>2. Nommer la Transition</h4>
-          <show-code subject="naming" language="css"></show-code>
-          <p>
-            Attribuez un nom unique à la transition de la carte. La classe
-            <code>.animate</code> permet de contrôler quand l'animation
-            s'applique.
-          </p>
-        </div>
-
-        <div class="step">
-          <h4>3. Animer les États de Transition</h4>
-          <show-code subject="transition-states" language="css"></show-code>
-          <p>
-            Utilisez <code>::view-transition-old</code> et
-            <code>::view-transition-new</code>
-            pour définir les animations de l'état initial et final.
-          </p>
-        </div>
-
-        <div class="step">
-          <h4>4. Déclencher la Transition</h4>
-          <show-code subject="trigger" language="js"></show-code>
-          <p>
-            Utilisez <code>document.startViewTransition()</code> pour déclencher
-            la transition avec la modification du DOM.
-          </p>
-        </div>
-      </div>
-
+      <step-block subject="keyframes" ></step-block>
+      <step-block subject="naming" ></step-block>
+      <step-block subject="transition_states" ></step-block>
+      <step-block subject="trigger" ></step-block>
       <div class="highlight-box">
         <h3>Visualisation du Processus</h3>
         <div class="screenshot-comparison">
@@ -203,7 +168,7 @@
 </section>
 
 <footer>
-    <p>🚀 Démonstration avancée des capacités de View Transitions API</p>
+    <p>🚀 Démonstration avancée des capacités de View Transitions API par Raphaël Tiphonet (<a href="https://github.com/Raphitpt">https://github.com/Raphitpt</a>) et Eliot Pouplier (<a href="https://github.com/eliotpp1">https://github.com/eliotpp1</a>) </p>
 </footer>
 </body>
 </html>

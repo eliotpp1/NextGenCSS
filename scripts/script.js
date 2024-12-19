@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
           card.classList.remove("expanded");
           container.classList.remove("has-expanded-card");
           activeCard = null;
+          // Attendre la fin de l'animation avant de supprimer la classe animate
           requestAnimationFrame(() => {
             card.classList.remove("animate");
           });
@@ -72,7 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (document.startViewTransition) {
         document.startViewTransition(() => {
           activeCard.classList.remove("expanded");
-          activeCard.classList.remove("animate");
+          // Attendre la fin de l'animation avant de supprimer la classe animate
+          requestAnimationFrame(() => {
+            activeCard.classList.remove("animate");
+          });
           container.classList.remove("has-expanded-card");
           activeCard = null;
         });
