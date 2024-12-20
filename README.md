@@ -27,7 +27,6 @@
   - [⚙️ Installation](#-installation)
   - [🤖 Utilisation](#🤖-utilisation)
   - [🧪 Tests](#🧪-tests)
-- [📌 Feuille de Route du Projet](#-feuille-de-route-du-projet)
 - [🔰 Contribution](#-contribution)
 - [🎗 Licence](#-licence)
 
@@ -39,8 +38,14 @@
 └── NextGenCSS/
     ├── README.md
     ├── components
-    │   └── show-code.js
+    │   ├── show-code.js
+    │	├── step-block.js
+    │   └── card.js
     ├── index.html
+    ├── images
+    │   ├── etat_final.PNG
+    │	├── etat_initial.PNG
+    │	└── prevu.gif
     ├── scripts
     │   ├── script.js
     │   └── switch-theme-code.js
@@ -48,6 +53,7 @@
     └── styles
         ├── a11y-light.css
         ├── reset.css
+	├── card.css
         └── style.css
 ```
 
@@ -81,6 +87,10 @@
 				<td><b><a href='https://github.com/eliotpp1/NextGenCSS/blob/master/styles/reset.css'>reset.css</a></b></td>
 				<td><code>Style pour réduire les incohérences entre les navigateurs </code></td>
 			</tr>
+			<tr>
+				<td><b><a href='https://github.com/eliotpp1/NextGenCSS/blob/master/styles/card.css'>card.css</a></b></td>
+				<td><code>Style pour les cartes du component de démonstration </code></td>
+			</tr>
 			</table>
 		</blockquote>
 	</details>
@@ -106,6 +116,33 @@
 			<tr>
 				<td><b><a href='https://github.com/eliotpp1/NextGenCSS/blob/master/components/show-code.js'>show-code.js</a></b></td>
 				<td><code>Component réutilisable qui pour pour but de montrer du code</code></td>
+			</tr>
+			<tr>
+				<td><b><a href='https://github.com/eliotpp1/NextGenCSS/blob/master/components/step-block.js'>step-block.js</a></b></td>
+				<td><code>Component réutilisable qui pour pour but de ne pas répéter du code</code></td>
+			</tr>
+			<tr>
+				<td><b><a href='https://github.com/eliotpp1/NextGenCSS/blob/master/components/card.js'>card.js</a></b></td>
+				<td><code>Component réutilisable qui créer une carte</code></td>
+			</tr>
+			</table>
+		</blockquote>
+	</details>
+	<details> <!-- images Submodule -->
+		<summary><b>images</b></summary>
+		<blockquote>
+			<table>
+			<tr>
+				<td><b><a href='https://github.com/eliotpp1/NextGenCSS/blob/master/images/etat_inital.PNG'>etat_inital.PNG</a></b></td>
+				<td><code>Image qui illustre l'état initial avant transition</code></td>
+			</tr>
+			<tr>
+				<td><b><a href='https://github.com/eliotpp1/NextGenCSS/blob/master/images/etat_final.PNG'>etat_final.PNG</a></b></td>
+				<td><code>Image qui illustre l'état final avant transition</code></td>
+			</tr>
+			<tr>
+				<td><b><a href='https://github.com/eliotpp1/NextGenCSS/blob/master/images/prevu.gif'>prevu.gif</a></b></td>
+				<td><code>Gif qui montre une transition</code></td>
 			</tr>
 			</table>
 		</blockquote>
@@ -152,26 +189,26 @@ Ouvrez index.html avec l'extension LiveServer de VSC de préférences.
 <details closed>
 <summary>Contributing Guidelines</summary>
 
-1. **Fork the Repository**: Start by forking the project repository to your github account.
-2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
+1. **Forker le Dépôt**: Commencez par forker le dépôt du projet sur votre compte GitHub.
+2. **Cloner Localement**: Clonez le dépôt forké sur votre machine locale en utilisant un client Git.
    ```sh
    git clone https://github.com/eliotpp1/NextGenCSS
    ```
-3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
+3. **Créer une Nouvelle Branche**: Travaillez toujours sur une nouvelle branche avec un nom descriptif.
    ```sh
    git checkout -b new-feature-x
    ```
-4. **Make Your Changes**: Develop and test your changes locally.
-5. **Commit Your Changes**: Commit with a clear message describing your updates.
+4. **Apporter Vos Modifications**: Développez et testez vos modifications localement.
+5. **Valider Vos Modifications**: Faites un commit avec un message clair décrivant vos mises à jour.
    ```sh
    git commit -m 'Implemented new feature x.'
    ```
-6. **Push to github**: Push the changes to your forked repository.
+6. **Pousser sur GitHub**: Poussez les modifications sur votre dépôt forké.
    ```sh
    git push origin new-feature-x
    ```
-7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
-8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
+7. **Soumettre une Pull Request**: Créez une PR (Pull Request) sur le dépôt original du projet. Décrivez clairement les modifications et leur motivation.
+8. **Review**: Une fois votre PR examinée et approuvée, elle sera fusionnée dans la branche principale. Félicitations pour votre contribution !
 </details>
 
 <details closed>
